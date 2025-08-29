@@ -1,0 +1,2 @@
+ckpt,areas,healthy_mse,lesioned_mse,delta_mse
+saved_models\cernn\dummy-vpsnj8eo\last.ckpt,L_V1 L_V2 L_V3 L_V4,5.040197506546974,5.038466677069664,-0.0017308294773101807
