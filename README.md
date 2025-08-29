@@ -4,16 +4,6 @@ This repository contains the code and results for **Virtual Stroke: Investigatin
 The project extends the **Cortically Embedded Recurrent Neural Network (CERNN)** framework to simulate virtual lesions in cortical areas and study their effect on visuomotor performance.
 
 ---
-
-## Requirements
-
-Install the dependencies using:
-
-```bash
-pip install -r requirements.txt
-You may need to separately install PyTorch with the correct CUDA version for your machine:
-PyTorch Installation Guide
-
 ## Training
 To train the model (default configuration):
 
@@ -68,3 +58,13 @@ Lesioning method: zeroing out hidden states of selected cortical areas during fo
 Metrics: Mean Squared Error (MSE), angular accuracy
 
 This framework allows systematic investigation of how lesioning specific cortical areas (Visual cortex, Dorsal Attention Network, Frontoparietal Network, etc.) alters task performance.
+
+## Requirements
+
+Install the dependencies using:
+
+```bash
+pip install -r requirements.txt
+You may need to separately install PyTorch with the correct CUDA version for your machine:
+PyTorch Installation Guide
+
