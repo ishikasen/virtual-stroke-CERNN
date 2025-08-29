@@ -14,7 +14,7 @@ pip install -r requirements.txt
 You may need to separately install PyTorch with the correct CUDA version for your machine:
 PyTorch Installation Guide
 
-Training
+## Training
 To train the model (default configuration):
 
 bash
@@ -23,7 +23,7 @@ python src/train_rnn_multitask.py
 Training is controlled by Hydra configuration files inside src/hydraconfigs/.
 You can adjust parameters such as epochs, batch_size_train, etc. in local.yaml.
 
- Evaluation
+## Evaluation
 Mean Squared Error (MSE) lesioning
 To evaluate MSE differences between healthy and lesioned networks:
 
@@ -41,7 +41,9 @@ You can also list available cortical areas with:
 bash
 Copy code
 python eval_mse.py --list-areas
-Results
+
+
+## Results
 All analysis results are stored in CSV format for easy inspection:
 
 results_300.csv → performance after 300 epochs
@@ -54,7 +56,7 @@ results_300_fpn.csv, results_500_fpn.csv → lesion results for Frontoparietal N
 
 *_per_rule.csv → breakdown per individual task (e.g. fdgo, delayanti, etc.)
 
-Project Overview
+## Project Overview
 Model: Cortically Embedded RNN (CERNN)
 
 Inputs: Sensory (visual L_V1, somatosensory L_3b)
