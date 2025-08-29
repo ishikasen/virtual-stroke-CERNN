@@ -1,64 +1,68 @@
-# CERNN 
+# Virtual Stroke CERNN
 
-This repository is the official implementation of [CERNN](coming soon). 
+This repository contains the code and results for **Virtual Stroke: Investigating How Neural Damage Affects Motor Tasks**, an MSc thesis project.  
+The project extends the **Cortically Embedded Recurrent Neural Network (CERNN)** framework to simulate virtual lesions in cortical areas and study their effect on visuomotor performance.
 
-## Setting up the environment
+---
 
 ## Requirements
-- you may need to separately install pytorch with the right cuda setting [install pytorch](https://pytorch.org/get-started/locally/)
-- training models requires an account on [weights and biases](wandb.ai)
 
-Install the requirements with any package manager using the `requirements.txt.` 
+Install the dependencies using:
 
-```setup
+```bash
 pip install -r requirements.txt
-```
+You may need to separately install PyTorch with the correct CUDA version for your machine:
+PyTorch Installation Guide
 
-## Training
+Training
+To train the model (default configuration):
 
-To train the models, run this command:
+bash
+Copy code
+python src/train_rnn_multitask.py
+Training is controlled by Hydra configuration files inside src/hydraconfigs/.
+You can adjust parameters such as epochs, batch_size_train, etc. in local.yaml.
 
-CERNN: 
-```train
-python3 train.py 
-```
-Baseline LeakyRNN: 
-```train
-python3 train.py model=baseline_leaky_rnn
-```
+ Evaluation
+Mean Squared Error (MSE) lesioning
+To evaluate MSE differences between healthy and lesioned networks:
 
-> Training uses [hydra](https://hydra.cc/docs/intro/), which lets you modify any hyperparameters and settings in the `src/hydraconfigs` folder via the command line
+bash
+Copy code
+python eval_mse.py --areas L_V1 L_V2 L_V3 L_V4
+Accuracy comparison
+To evaluate angular accuracy (± degrees):
 
+bash
+Copy code
+python eval_acc.py --areas L_FEF
+You can also list available cortical areas with:
 
-## Evaluation
+bash
+Copy code
+python eval_mse.py --list-areas
+Results
+All analysis results are stored in CSV format for easy inspection:
 
-Add a checkpoint folder with the following structure 
-```
-checkpoint_dir 
-|- epoch_perf_.ckpt   # best performing model 
-|- hp_pl_module.pkl   # model hyperparameters
-|- last.ckpt          # final model after full training 
-|- task_hp.pkl        # task configuration 
-```
+results_300.csv → performance after 300 epochs
 
-Add the path to the notebook in `notebooks/model_analysis.ipynb` for analysis
+results_500.csv → performance after 500 epochs
 
+results_300_dorsal.csv, results_500_dorsal.csv → lesion results for Dorsal Attention Network
 
-## Pre-trained Models
+results_300_fpn.csv, results_500_fpn.csv → lesion results for Frontoparietal Network
 
-[UoB sharepoint link to models](https://uob-my.sharepoint.com/:f:/g/personal/od23963_bristol_ac_uk/EiDCEnjtVwFJrkKJ4nte-3YBTqjRt4f34bCwiP2hYF3jhQ?e=Y8e5cn)
+*_per_rule.csv → breakdown per individual task (e.g. fdgo, delayanti, etc.)
 
-## Results
+Project Overview
+Model: Cortically Embedded RNN (CERNN)
 
-Our model achieves the following performance on all tasks:
+Inputs: Sensory (visual L_V1, somatosensory L_3b)
 
+Outputs: Motor (L_FEF)
 
-| Model name         | 100 epochs | 500 epochs
-| ------------------ |---------------- | -------------- |
-| CERNN defaults   |     93%        |            |
-| CERNN xyz regulariser   |             |            |
-| Baseline leaky RNN |             |            |
+Lesioning method: zeroing out hidden states of selected cortical areas during forward pass
 
+Metrics: Mean Squared Error (MSE), angular accuracy
 
-
-
+This framework allows systematic investigation of how lesioning specific cortical areas (Visual cortex, Dorsal Attention Network, Frontoparietal Network, etc.) alters task performance.
