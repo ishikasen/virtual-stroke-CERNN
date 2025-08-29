@@ -4,14 +4,6 @@ This repository contains the code and results for **Virtual Stroke: Investigatin
 The project extends the **Cortically Embedded Recurrent Neural Network (CERNN)** framework to simulate virtual lesions in cortical areas and study their effect on visuomotor performance.
 
 ---
-## Training
-To train the model (default configuration):
-
-bash
-Copy code
-python src/train_rnn_multitask.py
-Training is controlled by Hydra configuration files inside src/hydraconfigs/.
-You can adjust parameters such as epochs, batch_size_train, etc. in local.yaml.
 
 ## Evaluation
 Mean Squared Error (MSE) lesioning
