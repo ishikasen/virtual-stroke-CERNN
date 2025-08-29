@@ -9,19 +9,14 @@ The project extends the **Cortically Embedded Recurrent Neural Network (CERNN)**
 Mean Squared Error (MSE) lesioning
 To evaluate MSE differences between healthy and lesioned networks:
 
-bash
-Copy code
+
 python eval_mse.py --areas L_V1 L_V2 L_V3 L_V4
 Accuracy comparison
 To evaluate angular accuracy (± degrees):
 
-bash
-Copy code
 python eval_acc.py --areas L_FEF
-You can also list available cortical areas with:
+Also lists available cortical areas with:
 
-bash
-Copy code
 python eval_mse.py --list-areas
 
 
